@@ -9,12 +9,16 @@ export default defineNuxtConfig({
         "@nuxtjs/google-fonts",
     ],
     supabase: {
-        redirect: false,
+        redirectOptions: {
+            login: "/login",
+            callback: "/",
+            exclude: ["/", "/login", "/register", "/confirm"],
+        },
     },
     googleFonts: {
         download: true,
         families: {
-            "DM Sans": [400, 600, 700],
+            'Work Sans': [400, 600, 700],
         },
         preload: true,
     },
