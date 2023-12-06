@@ -1,5 +1,10 @@
 <template>
-  <div>
-    <SneakerCard></SneakerCard>
-  </div>
+    <div>
+        <SearchBar />
+        <div class="flex flex-wrap justify-between">
+            <SneakerCard />
+            <SneakerCard />
+            <SneakerCard />
+        </div>
+    </div>
 </template>
