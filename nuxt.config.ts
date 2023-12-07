@@ -12,14 +12,22 @@ export default defineNuxtConfig({
         redirectOptions: {
             login: "/login",
             callback: "/",
-            exclude: ["/", "/login", "/register", "/confirm"],
+            exclude: [
+                "/",
+                "/login",
+                "/register",
+                "/confirm",
+                "/forgotpassword",
+                "/resetpassword",
+                "/details/*",
+            ],
         },
     },
     googleFonts: {
         download: true,
         families: {
-            'Work Sans': [400, 600, 700],
+            "Work Sans": [400, 600, 700],
         },
         preload: true,
-    },
+    }
 });

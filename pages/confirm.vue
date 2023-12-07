@@ -11,6 +11,7 @@ watch(
     user,
     () => {
         if (user.value) {
+            reloadNuxtApp()
             return navigateTo("/");
         }
     },

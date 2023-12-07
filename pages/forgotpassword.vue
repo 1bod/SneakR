@@ -5,7 +5,7 @@
                 <h2
                     class="text-base font-semibold leading-6 text-gray-900 dark:text-white"
                 >
-                    Login to your account
+                    Forgot Password
                 </h2>
                 <p class="text-sm text-red-600 h-5">{{ errorMessage }}</p>
             </template>
@@ -16,35 +16,15 @@
                 variant="outline"
                 type="email"
                 placeholder="Email"
-                class="w-full mb-4"
+                class="w-full"
                 :color="errorMessage != '' ? 'red' : 'gray'"
                 @input="() => (errorMessage = '')"
                 v-model="email"
                 required
             />
-            <UInput
-                name="password"
-                id="password"
-                type="password"
-                placeholder="Password"
-                class="w-full"
-                :color="errorMessage != '' ? 'red' : 'gray'"
-                @input="() => (errorMessage = '')"
-                v-model="password"
-                required
-            />
-
-            <ULink
-                to="/forgotpassword"
-                class="text-xs text-gray-600 dark:text-gray-400 hover:underline"
-                >Forgot password?</ULink
-            >
 
             <template #footer>
-                <UButton @click="login">Login</UButton>
-                <UButton to="/register" class="ml-3" variant="outline">
-                    Create an Account
-                </UButton>
+                <UButton @click="forgotPassword">Send Reset Email</UButton>
             </template>
         </UCard>
     </div>
@@ -53,29 +33,33 @@
 <script setup lang="ts">
 import { ref } from "vue";
 const user = useSupabaseUser();
-const {auth} = useSupabaseClient();
+const { auth } = useSupabaseClient();
+const toast = useToast();
 
 const email = ref("");
-const password = ref("");
 const errorMessage = ref("");
 
 watchEffect(() => {
     if (user.value) {
         reloadNuxtApp();
-        navigateTo("/account");
+        navigateTo("/");
     }
 });
 
-const login = async () => {
-    const { data, error } = await auth.signInWithPassword({
-        email: email.value,
-        password: password.value,
+const forgotPassword = async () => {
+    const { error } = await auth.resetPasswordForEmail(email.value, {
+        redirectTo: "http://" + window?.location.host + "/resetpassword",
     });
     if (error) {
-        console.error(error);
         errorMessage.value = error.message;
     } else {
-        console.log(data);
+        toast.add({
+            title: "Check your inbox",
+            description:
+                "We've sent you an email with a link to reset your password.",
+            icon: "i-heroicons-envelope",
+            timeout: 5000,
+        });
     }
 };
 </script>

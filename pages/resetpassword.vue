@@ -5,46 +5,37 @@
                 <h2
                     class="text-base font-semibold leading-6 text-gray-900 dark:text-white"
                 >
-                    Login to your account
+                    Reset Password
                 </h2>
                 <p class="text-sm text-red-600 h-5">{{ errorMessage }}</p>
             </template>
 
             <UInput
-                name="email"
-                id="email"
-                variant="outline"
-                type="email"
-                placeholder="Email"
-                class="w-full mb-4"
-                :color="errorMessage != '' ? 'red' : 'gray'"
-                @input="() => (errorMessage = '')"
-                v-model="email"
-                required
-            />
-            <UInput
                 name="password"
                 id="password"
                 type="password"
                 placeholder="Password"
-                class="w-full"
+                class="w-full mb-3"
                 :color="errorMessage != '' ? 'red' : 'gray'"
                 @input="() => (errorMessage = '')"
                 v-model="password"
                 required
             />
 
-            <ULink
-                to="/forgotpassword"
-                class="text-xs text-gray-600 dark:text-gray-400 hover:underline"
-                >Forgot password?</ULink
-            >
+            <UInput
+                name="confirmPassword"
+                id="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                class="w-full"
+                :color="errorMessage != '' ? 'red' : 'gray'"
+                @input="() => (errorMessage = '')"
+                v-model="confirmPassword"
+                required
+            />
 
             <template #footer>
-                <UButton @click="login">Login</UButton>
-                <UButton to="/register" class="ml-3" variant="outline">
-                    Create an Account
-                </UButton>
+                <UButton @click="resetPassword">Set as new password</UButton>
             </template>
         </UCard>
     </div>
@@ -53,29 +44,24 @@
 <script setup lang="ts">
 import { ref } from "vue";
 const user = useSupabaseUser();
-const {auth} = useSupabaseClient();
+const { auth } = useSupabaseClient();
 
-const email = ref("");
 const password = ref("");
+const confirmPassword = ref("");
 const errorMessage = ref("");
 
-watchEffect(() => {
-    if (user.value) {
-        reloadNuxtApp();
-        navigateTo("/account");
+const resetPassword = async () => {
+    if (password.value != confirmPassword.value) {
+        errorMessage.value = "Passwords do not match";
+        return;
     }
-});
-
-const login = async () => {
-    const { data, error } = await auth.signInWithPassword({
-        email: email.value,
+    const { error } = await auth.updateUser({
         password: password.value,
     });
     if (error) {
-        console.error(error);
         errorMessage.value = error.message;
     } else {
-        console.log(data);
+        navigateTo("/login");
     }
 };
 </script>
