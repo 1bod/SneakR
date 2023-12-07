@@ -8,7 +8,7 @@
             >
                 <NuxtImg
                     class="shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none object-[45%_50%] absolute z-10 inset-0 w-full h-full object-cover rounded-lg transition-all will-change-auto !ease-soft-spring !duration-300 sm:scale-90 sm:left-0"
-                    src="https://image.goat.com/attachments/product_template_pictures/images/086/718/540/original/1203A281_100.png.png"
+                    :src="sneaker.image?.original"
                 />
             </div>
             <div
@@ -17,19 +17,29 @@
                 <h1
                     class="relative w-full flex-none font-semibold text-foreground text-lg"
                 >
-                    AICS Gel-NYC Shigen 2.0
+                    {{ sneaker.name }}
                 </h1>
                 <p class="my-1 w-full text-default-500 text-xs">
-                    White/Dolphin Blue
+                    {{ sneaker.colorway }}
                 </p>
                 <p class="relative text-md font-semibold text-foreground mt-1">
-                    $120
+                    ${{ sneaker.retailPrice }}
                 </p>
                 <div class="flex gap-2 mt-4">
-                    <UButton size="md" color="primary" variant="solid"
+                    <UButton
+                        :to="
+                            sneaker.links.goat ||
+                            sneaker.links.stockX ||
+                            sneaker.links.flightClub ||
+                            sneaker.links.stadiumGoods
+                        "
+                        target="_blank"
+                        size="md"
+                        color="primary"
+                        variant="solid"
                         >Buy Now</UButton
                     >
-                    <UButton size="md" color="primary" variant="outline"
+                    <UButton :to="'/details/' + sneaker.id" size="md" color="primary" variant="outline"
                         >Details</UButton
                     >
                     <UButton
@@ -51,3 +61,7 @@
         </div>
     </article>
 </template>
+
+<script setup lang="ts">
+defineProps(["sneaker"]);
+</script>
