@@ -52,12 +52,21 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+const user = useSupabaseUser();
 const supabase = useSupabaseClient();
+
 
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
 const errorMessage = ref("");
+
+watchEffect(() => {
+    if (user.value) {
+        reloadNuxtApp();
+        navigateTo("/account");
+    }
+});
 
 const register = async () => {
     if (password.value != confirmPassword.value) {
