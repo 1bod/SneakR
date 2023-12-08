@@ -8,7 +8,10 @@
             >
                 <NuxtImg
                     class="shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none object-[45%_50%] absolute z-10 inset-0 w-full h-full object-cover rounded-lg transition-all will-change-auto !ease-soft-spring !duration-300 sm:scale-90 sm:left-0"
-                    :src="sneaker.image?.original"
+                    :src="
+                        sneaker.image?.original ||
+                        'https://image.goat.com/attachments/product_template_pictures/images/095/297/756/original/1203A430_001.png.png'
+                    "
                 />
             </div>
             <div
@@ -39,7 +42,11 @@
                         variant="solid"
                         >Buy Now</UButton
                     >
-                    <UButton :to="'/details/' + sneaker.id" size="md" color="primary" variant="outline"
+                    <UButton
+                        :to="'/details/' + sneaker.id"
+                        size="md"
+                        color="primary"
+                        variant="outline"
                         >Details</UButton
                     >
                     <UButton

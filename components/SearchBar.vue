@@ -4,5 +4,12 @@
         size="sm"
         color="gray"
         placeholder="Search..."
+        :value="modelQuery"
+        @input="modelQuery = $event.target.value"
     />
 </template>
+
+<script setup>
+defineProps(["modelQuery"]);
+defineEmits(["update:modelQuery"]);
+</script>
