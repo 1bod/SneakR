@@ -51,7 +51,7 @@ export default eventHandler(async (event) => {
 
         data = await client
             .from("sneakers")
-            .select("id, colorway, image, links, name, retailPrice")
+            .select("id, brand, colorway, image, links, name, retailPrice")
             .ilike("name", query)
             .range(
                 page * items_per_page - items_per_page,
@@ -63,7 +63,7 @@ export default eventHandler(async (event) => {
             .select("id")
         data = await client
             .from("sneakers")
-            .select("id, colorway, image, links, name, retailPrice")
+            .select("id, brand, colorway, image, links, name, retailPrice")
             .range(
                 page * items_per_page - items_per_page,
                 page * items_per_page - 1
