@@ -1,21 +1,24 @@
 <template>
     <div>
-        <SearchBar
-            :model-query="query"
-            @update:model-value="(newValue: string) => query = newValue"
-        />
-        <div class="flex flex-wrap justify-between">
-            <SneakerCard
-                v-for="sneaker in sneakers?.sneakers"
-                :sneaker="sneaker"
-                :key="sneaker.id"
+        <HeroComponent>
+            <template #title> SneakR </template>
+            <template #description>
+                Search for your favorite sneakers
+            </template>
+        </HeroComponent>
+        <main class="mx-auto min-h-[90vh] w-full xl:w-10/12">
+            <SearchBar
+                :model-query="query"
+                @update:model-value="(newValue: string) => query = newValue"
             />
-        </div>
-        <UPagination
-            v-model="page"
-            :page-count="sneakers?.meta.items_per_page"
-            :total="sneakers?.meta.total_items || 49214"
-        />
+            <SneakerList :sneaker-list="sneakers?.sneakers" />
+            <UPagination
+                class="mx-auto w-full justify-center"
+                v-model="page"
+                :page-count="sneakers?.meta.items_per_page"
+                :total="sneakers?.meta.total_items || 49214"
+            />
+        </main>
     </div>
 </template>
 

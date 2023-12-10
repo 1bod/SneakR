@@ -5,6 +5,7 @@ export default <Partial<Config>>{
     theme: {
         fontFamily: {
             sans: ["'Work Sans'", "Inter", ...defaultTheme.fontFamily.sans],
+            display: ["Trap", ...defaultTheme.fontFamily.sans],
         },
         extend: {
             colors: {

@@ -1,8 +1,9 @@
 <template>
   <div class="min-h-screen">
     <NavBar></NavBar>
-    <main class="mx-auto min-h-[90vh] w-10/12">
-      <slot />
+    <slot />
+    <main class="mx-auto min-h-[90vh] w-full xl:w-10/12">
+
     </main>
   </div>
 </template>

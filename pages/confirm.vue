@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <main class="mx-auto min-h-[90vh] w-full xl:w-10/12">
         <p>Redirecting...</p>
-    </div>
+    </main>
 </template>
 
 <script setup lang="ts">
