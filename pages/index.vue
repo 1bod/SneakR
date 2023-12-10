@@ -56,7 +56,7 @@ const query = ref("");
 const sneakers = ref<SneakersData | null>(data.value as SneakersData);
 console.log(sneakers.value);
 
-baseAPIUrl += `?page=${page.value}`;
+baseAPIUrl += `page=${page.value}`;
 
 watch(page, async (newPage) => {
     baseAPIUrl = "/api/sneakers?";
@@ -73,7 +73,7 @@ watch(page, async (newPage) => {
         headers: useRequestHeaders(["cookie"]),
     });
     if (error?.value) {
-        console.log(error);
+        console.error(error);
     } else {
         sneakers.value = data.value as SneakersData;
         console.log(sneakers.value);
@@ -93,7 +93,7 @@ watch(query, async (newQuery) => {
         headers: useRequestHeaders(["cookie"]),
     });
     if (error?.value) {
-        console.log(error);
+        console.error(error);
     } else {
         sneakers.value = data.value as SneakersData;
         console.log(sneakers.value);
