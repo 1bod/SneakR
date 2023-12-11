@@ -45,9 +45,10 @@ export default eventHandler(async (event) => {
 
     if (query) {
         console.log("query", query);
-         fullIDList = await client.from("sneakers")
+        fullIDList = await client
+            .from("sneakers")
             .select("id")
-            .ilike("name", query)
+            .ilike("name", query);
 
         data = await client
             .from("sneakers")
@@ -58,9 +59,7 @@ export default eventHandler(async (event) => {
                 page * items_per_page - 1
             );
     } else {
-         fullIDList = await client
-            .from("sneakers")
-            .select("id")
+        fullIDList = await client.from("sneakers").select("id");
         data = await client
             .from("sneakers")
             .select("id, brand, colorway, image, links, name, retailPrice")
@@ -70,20 +69,23 @@ export default eventHandler(async (event) => {
             );
     }
 
-    const convertedData = data?.data?.map((item) => {
-        return {
-            ...item,
-            image: JSON.parse(item.image.replace(/'/g, '"')),
-            links: JSON.parse(item.links.replace(/'/g, '"')),
-        };
-    });
+    let convertedData =
+        data?.data?.map((item) => {
+            return {
+                ...item,
+                image: JSON.parse(item.image.replace(/'/g, '"')),
+                links: JSON.parse(item.links.replace(/'/g, '"')),
+            };
+        }) || [];
 
     console.log("sent", convertedData);
 
     return {
-        sneakers: convertedData, meta: {
+        sneakers: convertedData,
+        meta: {
             page: page,
             items_per_page: items_per_page,
-            total_items: fullIDList.data?.length
-    } };
+            total_items: fullIDList.data?.length,
+        },
+    };
 });

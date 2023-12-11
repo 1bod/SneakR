@@ -1,5 +1,7 @@
 <template>
-    <article class="flex flex-col relative h-auto lg:h-[200px] m-6 sm:m-6 w-full sm:w-auto">
+    <article
+        class="flex flex-col relative h-auto lg:h-[200px] m-6 sm:m-6 w-full sm:w-auto"
+    >
         <div
             class="rounded-[2.1rem] bg-white dark:bg-zinc-900 flex w-full sm:w-[32rem] p-2 flex-auto place-content-inherit align-items-inherit h-auto break-words text-left subpixel-antialiased relative flex-col md:flex-row md:items-center lg:max-h-52 gap-4 overflow-visible"
         >
@@ -9,6 +11,7 @@
                 <NuxtImg
                     class="shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none object-[45%_50%] absolute z-10 inset-0 mx-auto w-9/12 md:w-full h-full object-cover rounded-lg transition-all will-change-auto !ease-soft-spring !duration-300 md:scale-90 sm:left-0"
                     :src="
+                        sneaker.image?.small ||
                         sneaker.image?.thumbnail ||
                         sneaker.image?.original ||
                         'https://image.goat.com/attachments/product_template_pictures/images/095/297/756/original/1203A430_001.png.png'
@@ -59,18 +62,28 @@
                         >Details</UButton
                     >
                     <UButton
-                        icon="i-heroicons-plus"
+                        :icon="
+                            inCollection
+                                ? 'i-heroicons-check'
+                                : 'i-heroicons-plus'
+                        "
                         size="sm"
                         color="primary"
                         square
                         variant="ghost"
+                        @click="$emit('collection', sneaker)"
                     />
                     <UButton
-                        icon="i-heroicons-heart"
+                        :icon="
+                            inWishlist
+                                ? 'i-heroicons-heart-solid'
+                                : 'i-heroicons-heart'
+                        "
                         size="sm"
                         color="primary"
                         square
                         variant="ghost"
+                        @click="$emit('wishlist', sneaker)"
                     />
                 </div>
             </div>
@@ -79,5 +92,6 @@
 </template>
 
 <script setup lang="ts">
-defineProps(["sneaker"]);
+defineProps(["sneaker", "inCollection", "inWishlist"]);
+defineEmits(["collection", "wishlist"]);
 </script>
