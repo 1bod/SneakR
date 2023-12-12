@@ -42,8 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-const user = useSupabaseUser();
 const { auth } = useSupabaseClient();
 
 const password = ref("");

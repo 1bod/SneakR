@@ -18,15 +18,18 @@
                 <li><ULink to="/collection">Collection</ULink></li>
                 <li><ULink to="/wishlist">Wishlist</ULink></li>
                 <li>
-                    <UDropdown class="font-sans font-normal" :items="items" mode="hover">
-                        <ULink to="/account">
-                            <UButton
+                    <UDropdown
+                        class="font-sans font-normal"
+                        :items="items"
+                        mode="hover"
+                    >
+                        <UButton
                             class="w-9 h-9"
-                                icon="i-heroicons-user"
-                                variant="ghost"
-                                color="black"
-                            />
-                        </ULink>
+                            icon="i-heroicons-user"
+                            variant="ghost"
+                            color="black"
+                        />
+
                         <template #account="{ item }">
                             <div class="text-left">
                                 <p>Signed in as</p>
@@ -90,7 +93,7 @@ const items: DropdownItem[][] = user.value
               {
                   label: "Settings",
                   icon: "i-heroicons-cog-8-tooth",
-                  click: () => navigateTo("/account"),
+                  click: () => navigateTo("/settings"),
               },
               {
                   label: "Sign out",

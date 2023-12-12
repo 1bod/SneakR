@@ -63,7 +63,7 @@ const errorMessage = ref("");
 watchEffect(() => {
     if (user.value) {
         reloadNuxtApp();
-        navigateTo("/account");
+        navigateTo("/");
     }
 });
 
