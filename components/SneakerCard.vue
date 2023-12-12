@@ -6,16 +6,11 @@
             class="rounded-[2.1rem] bg-white dark:bg-zinc-900 flex w-full sm:w-[32rem] p-2 flex-auto place-content-inherit align-items-inherit h-auto break-words text-left subpixel-antialiased relative flex-col md:flex-row md:items-center lg:max-h-52 gap-4 overflow-visible"
         >
             <div
-                class="bg-gradient-to-br flex-none w-full md:w-44 h-44 mb-0 relative z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-br transition-all !ease-soft-spring !duration-500 will-change-auto before:transition-all rounded-3xl before:rounded-3xl before:from-[#edf9ff] dark:before:from-primary-950 before:to-primary dark:before:to-primary shadow-lg"
+                class="bg-gradient-to-br flex-none lg:mx-1 w-full md:w-44 h-44 mb-0 relative z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-br transition-all !ease-soft-spring !duration-500 will-change-auto before:transition-all rounded-3xl before:rounded-3xl before:from-[#edf9ff] dark:before:from-primary-950 before:to-primary dark:before:to-primary shadow-lg"
             >
                 <NuxtImg
                     class="shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none object-[45%_50%] absolute z-10 inset-0 mx-auto w-9/12 md:w-full h-full object-cover rounded-lg transition-all will-change-auto !ease-soft-spring !duration-300 md:scale-90 sm:left-0"
-                    :src="
-                        sneaker.image?.small ||
-                        sneaker.image?.thumbnail ||
-                        sneaker.image?.original ||
-                        'https://image.goat.com/attachments/product_template_pictures/images/095/297/756/original/1203A430_001.png.png'
-                    "
+                    :src="image"
                 />
             </div>
             <div
@@ -92,6 +87,16 @@
 </template>
 
 <script setup lang="ts">
-defineProps(["sneaker", "inCollection", "inWishlist"]);
+const props = defineProps(["sneaker", "inCollection", "inWishlist"]);
 defineEmits(["collection", "wishlist"]);
+
+function getImage(src: string): string {
+    if (src && src != "[]" && src != "true") {
+        return src;
+    } else {
+        return "/assets/img/Unicons question.svg";
+    }
+}
+
+let image = getImage(props.sneaker.image?.small);
 </script>
