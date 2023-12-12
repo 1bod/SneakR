@@ -1,17 +1,17 @@
 import { serverSupabaseClient } from "#supabase/server";
 import { PostgrestSingleResponse } from "@supabase/supabase-js";
 
-const prepareQuery = (query: string) => {
-    if (!query) return "";
-    query = "%" + query + "%";
+const prepareQuery = (inputQuery: string) => {
+    if (!inputQuery) return "";
+    const query = `%${inputQuery}%`;
     return query;
 };
 
 export default eventHandler(async (event) => {
     const client = await serverSupabaseClient(event);
-    let urlString = event.node.req.url;
-    let paramString = urlString?.split("?")[1];
-    let queryString = new URLSearchParams(paramString);
+    const urlString = event.node.req.url;
+    const paramString = urlString?.split("?")[1];
+    const queryString = new URLSearchParams(paramString);
     let fullIDList;
 
     console.log("requested", urlString);
@@ -69,7 +69,7 @@ export default eventHandler(async (event) => {
             );
     }
 
-    let convertedData =
+    const convertedData =
         data?.data?.map((item) => {
             return {
                 ...item,

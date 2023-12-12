@@ -5,9 +5,9 @@ import { useRoute } from "vue-router";
 export default eventHandler(async (event) => {
     const client = await serverSupabaseClient(event);
     const user = await serverSupabaseUser(event);
-    let urlString = event.node.req.url;
-    let paramString = urlString?.split("?")[1];
-    let queryString = new URLSearchParams(paramString);
+    const urlString = event.node.req.url;
+    const paramString = urlString?.split("?")[1];
+    const queryString = new URLSearchParams(paramString);
 
     let data: PostgrestSingleResponse<
         {
@@ -29,23 +29,25 @@ export default eventHandler(async (event) => {
     page = queryString.get("page")
         ? parseInt(queryString.get("page") as string)
         : page;
-        console.log("wishlist", user?.user_metadata.wishlist);
 
-    let fullIDList = await client
+    let wishlist: number[] = user?.user_metadata.wishlist;
+    wishlist = wishlist.filter(Number);
+
+    const fullIDList = await client
         .from("sneakers")
         .select("id")
-        .in("id", user?.user_metadata.wishlist);
+        .in("id", wishlist);
 
     data = await client
         .from("sneakers")
         .select("id, brand, colorway, image, links, name, retailPrice")
-        .in("id", user?.user_metadata.wishlist)
+        .in("id", wishlist)
         .range(
             page * items_per_page - items_per_page,
             page * items_per_page - 1
         );
 
-    let convertedData =
+    const convertedData =
         data?.data?.map((item) => {
             return {
                 ...item,
