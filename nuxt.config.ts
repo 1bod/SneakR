@@ -30,5 +30,8 @@ export default defineNuxtConfig({
             "Work Sans": [400, 600, 700],
         },
         preload: true,
-    }
+    },
+    app: {
+        pageTransition: { name: "page", mode: "out-in" },
+    },
 });
