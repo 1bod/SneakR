@@ -91,7 +91,7 @@ const props = defineProps(["sneaker", "inCollection", "inWishlist"]);
 defineEmits(["collection", "wishlist"]);
 
 function getImage(src: string): string {
-    if (src && src != "[]" && src != "true") {
+    if (src && src != "[]" && src != "true" && src != "false") {
         return src;
     } else {
         return "/assets/img/Unicons question.svg";
