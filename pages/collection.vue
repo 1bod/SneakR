@@ -6,10 +6,10 @@
                 List the sneakers you already own
             </template>
         </HeroComponent>
-        <main class="mx-auto min-h-[90vh] w-full xl:w-10/12">
+        <main class="mx-auto w-full xl:w-10/12">
             <SneakerList :sneaker-list="sneakers?.sneakers" />
             <UPagination
-                class="mx-auto w-full justify-center"
+                class="mx-auto w-full justify-center pb-10"
                 v-model="page"
                 :page-count="sneakers?.meta.items_per_page"
                 :total="sneakers?.meta.total_items || 49214"

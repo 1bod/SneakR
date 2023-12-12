@@ -6,14 +6,14 @@
                 Search for your favorite sneakers
             </template>
         </HeroComponent>
-        <main class="mx-auto min-h-[90vh] w-full xl:w-10/12">
+        <main class="mx-auto w-full xl:w-10/12">
             <SearchBar
                 :model-query="query"
                 @update:model-value="(newValue: string) => query = newValue"
             />
             <SneakerList :sneaker-list="sneakers?.sneakers" />
             <UPagination
-                class="mx-auto w-full justify-center"
+                class="mx-auto w-full justify-center pb-10"
                 v-model="page"
                 :page-count="sneakers?.meta.items_per_page"
                 :total="sneakers?.meta.total_items || 49214"

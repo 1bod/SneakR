@@ -1,5 +1,5 @@
 <template>
-    <main class="mx-auto min-h-[90vh] w-full xl:w-10/12 grid place-items-center">
+    <main class="mx-auto w-full xl:w-10/12 grid place-items-center">
         <UCard class="bg-white dark:bg-zinc-900 w-[22rem]">
             <template #header>
                 <h2
