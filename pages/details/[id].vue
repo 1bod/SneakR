@@ -2,7 +2,7 @@
     <main class="mx-auto w-full xl:w-10/12">
         <div class="overflow-hidden max-w-full h-[90vh] flex justify-center">
             <h1
-                class="text-[15rem] font-black font-display text-center tracking-wide text-[#0009] dark:text-[#eee5] leading-none absolute -z-10 max-w-[80vw] mt-32"
+                class="text-[15rem] font-black font-display text-center tracking-wider text-[#0009] dark:text-[#eee5] leading-none absolute -z-10 max-w-[80vw] mt-32"
                 style="text-wrap: balance"
             >
                 {{ sneaker?.silhouette || sneaker?.brand || "SneakR" }}
@@ -90,6 +90,12 @@
 const route = useRoute();
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
+
+definePageMeta({
+  pageTransition: {
+    name: 'details'
+  }
+})
 
 type Sneaker = {
     UID: string;
