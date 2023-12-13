@@ -148,14 +148,15 @@ if (error?.value) {
 }
 
 function getImage(src: Sneaker["image"]): string {
-    if (src.small && src.small != "[]" && src.small != "true") {
+    if (src.small && src.small != "[]" && src.small != "true" && src.small != "false") {
         return src.small;
-    } else if (src.original && src.original != "[]" && src.original != "true") {
+    } else if (src.original && src.original != "[]" && src.original != "true" && src.original != "false") {
         return src.original;
     } else if (
         src.thumbnail &&
         src.thumbnail != "[]" &&
-        src.thumbnail != "true"
+        src.thumbnail != "true" && 
+        src.thumbnail != "false"
     ) {
         return src.thumbnail;
     } else {
