@@ -10,10 +10,10 @@
 <script lang="ts" setup>
 useHead({
     htmlAttrs: {
-        class: "h-full w-full dark:bg-black",
+        class: "h-full w-screen dark:bg-black",
     },
     bodyAttrs: {
-        class: "h-full w-full bg-gray-50 dark:bg-black",
+        class: "h-full w-full max-w-full bg-gray-50 dark:bg-black overflow-x-hidden",
     },
 });
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <main class="mx-auto w-full xl:w-10/12 flex flex-col gap-4">
+    <main class="mx-auto w-min md:w-10/12 flex flex-col gap-4">
         <h1 class="text-xl">Settings</h1>
         <UDivider />
         <div>

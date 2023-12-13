@@ -1,8 +1,8 @@
 <template>
-    <main class="mx-auto w-full xl:w-10/12">
-        <div class="overflow-hidden max-w-full h-[90vh] flex justify-center">
+    <main class="mx-auto w-10/12">
+        <div class="overflow-hidden max-w-screen md:h-[90vh] flex justify-center">
             <h1
-                class="text-[15rem] font-black font-display text-center tracking-wider text-[#0009] dark:text-[#eee5] leading-none absolute -z-10 max-w-[80vw] mt-32"
+                class="text-8xl overflow-hidden xl:text-[15rem] lg:text-[10rem] md:text-9xl font-black font-display text-center tracking-wider text-[#0009] dark:text-[#eee5] leading-none absolute -z-10 max-w-[80vw] mt-32"
                 style="text-wrap: balance"
             >
                 {{ sneaker?.silhouette || sneaker?.brand || "SneakR" }}
@@ -15,7 +15,7 @@
                 ></NuxtImg>
             </div>
         </div>
-        <article class="min-h-[50vh] grid grid-cols-3 gap-32">
+        <article class="md:min-h-[50vh] grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-32">
             <div class="col-span-2">
                 <p class="w-full ml-0.5 text-gray-400 text-xs uppercase">
                     {{ sneaker?.brand }}
@@ -26,12 +26,12 @@
                 <p class="text-xl font-semibold font-display mb-2">
                     {{ sneaker?.colorway }}
                 </p>
-                <p>{{ sneaker?.story }}</p>
+                <p class="text-justify">{{ sneaker?.story }}</p>
                 <p v-if="sneaker?.releaseDate">
                     Released on {{ sneaker?.releaseDate }}
                 </p>
             </div>
-            <div>
+            <div class="col-span-2 md:col-span-1 my-8">
                 <div class="flex flex-row justify-between mx-4">
                     <h2 class="text-3xl font-bold font-display">
                         $
@@ -155,7 +155,7 @@ function getImage(src: Sneaker["image"]): string {
     } else if (
         src.thumbnail &&
         src.thumbnail != "[]" &&
-        src.thumbnail != "true" && 
+        src.thumbnail != "true" &&
         src.thumbnail != "false"
     ) {
         return src.thumbnail;

@@ -11,8 +11,6 @@
             </template>
 
             <UInput
-                name="password"
-                id="password"
                 type="password"
                 placeholder="Password"
                 class="w-full mb-3"
@@ -23,8 +21,6 @@
             />
 
             <UInput
-                name="confirmPassword"
-                id="confirmPassword"
                 type="password"
                 placeholder="Confirm Password"
                 class="w-full"

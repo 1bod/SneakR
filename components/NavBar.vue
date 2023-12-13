@@ -13,7 +13,7 @@
                 </li>
             </ul>
             <ul
-                class="text-xl font-semibold font-display lg:flex gap-4 justify-start items-center"
+                class="text-xl font-semibold font-display flex gap-4 justify-start items-center"
             >
                 <li><ULink to="/collection">Collection</ULink></li>
                 <li><ULink to="/wishlist">Wishlist</ULink></li>
