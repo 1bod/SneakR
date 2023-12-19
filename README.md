@@ -1,5 +1,7 @@
 # SneakR
 
+![Preview of the website](docs/assets/Capture-2023-12-19-093701.png)
+
 ## Description
 
 SneakR is a web application that allows users to browse and create collections and wishlists of sneakers. Users can create an account, browse sneakers, add sneakers to their wishlist, and to their collection. Users can also update their account information.
