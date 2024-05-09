@@ -35,9 +35,8 @@ export default eventHandler(async (event) => {
 	if (error) {
 		console.error(error);
 		return error;
-	} else {
-		console.log(data);
 	}
+		console.log(data);
 	data[0].image = JSON.parse(data[0].image.replace(/'/g, '"'));
 	data[0].links = JSON.parse(data[0].links.replace(/'/g, '"'));
 	return data[0];
